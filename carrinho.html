@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras - Press Play</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/carrinho.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <span class="logo-text"><span class="blue-text">Press</span>Play</span>
+                    </a>
+                </div>
+                
+                <!-- Search Bar - Desktop -->
+                <div class="search-bar-desktop">
+                    <input type="text" placeholder="Pesquisar jogos, categorias, publishers...">
+                    <button class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <!-- Navigation - Desktop -->
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link">Loja</a>
+                    <a href="#" class="nav-link">Biblioteca</a>
+                    <a href="#" class="nav-link">Comunidade</a>
+                    <div class="auth-buttons" id="auth-section-desktop">
+                        <a href="login.html" class="login-button">Login</a>
+                        <a href="cadastro.html" class="register-button">Cadastre-se</a>
+                    </div>
+                    <div class="user-dropdown" id="user-section-desktop" style="display: none;">
+                        <button class="user-button">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="header-username">Usuário</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="perfil.html"><i class="fas fa-user"></i> Meu Perfil</a>
+                            <a href="#"><i class="fas fa-cog"></i> Configurações</a>
+                            <a href="#" id="logout-button"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                        </div>
+                    </div>
+                    <button class="cart-icon cart-active">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Search Bar - Mobile -->
+            <div class="search-bar-mobile">
+                <input type="text" placeholder="Pesquisar jogos...">
+                <button class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu">
+            <div class="container">
+                <a href="index.html" class="mobile-nav-link">Loja</a>
+                <a href="#" class="mobile-nav-link">Biblioteca</a>
+                <a href="#" class="mobile-nav-link">Comunidade</a>
+                <div id="auth-section-mobile">
+                    <a href="login.html" class="mobile-nav-link">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="cadastro.html" class="mobile-nav-link">
+                        <i class="fas fa-user-plus"></i> Cadastre-se
+                    </a>
+                </div>
+                <div id="user-section-mobile" style="display: none;">
+                    <a href="perfil.html" class="mobile-nav-link">
+                        <i class="fas fa-user"></i> Meu Perfil
+                    </a>
+                    <a href="#" class="mobile-nav-link">
+                        <i class="fas fa-cog"></i> Configurações
+                    </a>
+                    <a href="#" class="mobile-nav-link" id="logout-button-mobile">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </a>
+                </div>
+                <a href="carrinho.html" class="mobile-nav-link active">
+                    <i class="fas fa-shopping-cart"></i> Carrinho
+                    <span class="cart-badge" id="cart-badge-mobile">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="cart-container">
+            <div class="container">
+                <div class="cart-header">
+                    <h1>Seu Carrinho</h1>
+                    <div class="cart-steps">
+                        <div class="step active">
+                            <span class="step-number">1</span>
+                            <span class="step-name">Carrinho</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step">
+                            <span class="step-number">2</span>
+                            <span class="step-name">Pagamento</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step">
+                            <span class="step-number">3</span>
+                            <span class="step-name">Confirmação</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-content">
+                    <div class="cart-items" id="cart-items">
+                        <!-- Os itens do carrinho serão inseridos aqui via JavaScript -->
+                        <div class="empty-cart" id="empty-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h3>Seu carrinho está vazio</h3>
+                            <p>Adicione itens à sua cesta para começar as compras.</p>
+                            <a href="index.html" class="continue-shopping">Continuar Comprando</a>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-summary" id="cart-summary">
+                        <h3>Resumo do Pedido</h3>
+                        <div class="summary-item">
+                            <span>Subtotal</span>
+                            <span id="subtotal">R$0,00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Descontos</span>
+                            <span id="discount">-R$0,00</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total</span>
+                            <span id="total">R$0,00</span>
+                        </div>
+                        <button class="checkout-button" id="checkout-button" disabled>Finalizar Compra</button>
+                        <a href="index.html" class="continue-shopping-link">Continuar Comprando</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkout-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="close-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="checkout-steps">
+                <div class="checkout-step" id="payment-step">
+                    <h2>Informações de Pagamento</h2>
+                    <form id="payment-form" class="checkout-form">
+                        <div class="form-group">
+                            <label for="card-number">Número do Cartão</label>
+                            <div class="card-input">
+                                <input type="text" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19">
+                                <div class="card-icons">
+                                    <i class="fab fa-cc-visa"></i>
+                                    <i class="fab fa-cc-mastercard"></i>
+                                    <i class="fab fa-cc-amex"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="card-expiry">Validade</label>
+                                <input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="card-cvv">CVV</label>
+                                <input type="text" id="card-cvv" placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-name">Nome no Cartão</label>
+                            <input type="text" id="card-name" placeholder="Nome como está no cartão">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="installments">Parcelas</label>
+                            <select id="installments">
+                                <option value="1">À vista</option>
+                                <option value="2">2x sem juros</option>
+                                <option value="3">3x sem juros</option>
+                                <option value="4">4x sem juros</option>
+                                <option value="5">5x sem juros</option>
+                                <option value="6">6x sem juros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group checkout-total">
+                            <span>Total:</span>
+                            <span id="checkout-total">R$0,00</span>
+                        </div>
+                        
+                        <button type="submit" class="payment-button">Realizar Pagamento</button>
+                    </form>
+                </div>
+                
+                <div class="checkout-step" id="confirmation-step" style="display: none;">
+                    <div class="confirmation-content">
+                        <div class="confirmation-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>Pedido Confirmado!</h2>
+                        <p>Seu pedido foi processado com sucesso.</p>
+                        <div class="order-details">
+                            <div class="order-number">
+                                <span>Número do Pedido:</span>
+                                <strong id="order-id">PP78923451</strong>
+                            </div>
+                            <div class="order-date">
+                                <span>Data:</span>
+                                <strong id="order-date">29/03/2025</strong>
+                            </div>
+                        </div>
+                        <p class="confirmation-message">Um e-mail de confirmação foi enviado para você com os detalhes do pedido e instruções para acessar seus novos jogos.</p>
+                        <div class="confirmation-actions">
+                            <a href="index.html" class="back-to-store">Voltar à Loja</a>
+                            <a href="perfil.html" class="go-to-library">Ir para Minha Biblioteca</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text"><span class="blue-text">Press</span>Play</span>
+                    <p>Sua plataforma de jogos digitais</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Links Rápidos</h3>
+                        <a href="index.html">Loja</a>
+                        <a href="#">Biblioteca</a>
+                        <a href="#">Comunidade</a>
+                        <a href="#">Suporte</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Categorias</h3>
+                        <a href="#">Ação</a>
+                        <a href="#">Aventura</a>
+                        <a href="#">RPG</a>
+                        <a href="#">Esportes</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Suporte</h3>
+                        <a href="#">FAQ</a>
+                        <a href="#">Contato</a>
+                        <a href="#">Política de Privacidade</a>
+                        <a href="#">Termos de Uso</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 PressPlay. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/carrinho.js"></script>
+    <script>
+        // Verificar se o usuário está logado e atualizar o cabeçalho
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            const authSectionDesktop = document.getElementById('auth-section-desktop');
+            const userSectionDesktop = document.getElementById('user-section-desktop');
+            const authSectionMobile = document.getElementById('auth-section-mobile');
+            const userSectionMobile = document.getElementById('user-section-mobile');
+            const headerUsername = document.getElementById('header-username');
+            
+            if (currentUser) {
+                // Usuário logado
+                if (authSectionDesktop) authSectionDesktop.style.display = 'none';
+                if (userSectionDesktop) userSectionDesktop.style.display = 'flex';
+                if (authSectionMobile) authSectionMobile.style.display = 'none';
+                if (userSectionMobile) userSectionMobile.style.display = 'block';
+                
+                // Atualizar nome do usuário
+                if (headerUsername) {
+                    headerUsername.textContent = currentUser.name.split(' ')[0]; // Primeiro nome
+                }
+                
+                // Adicionar funcionalidade de logout
+                const logoutButton = document.getElementById('logout-button');
+                const logoutButtonMobile = document.getElementById('logout-button-mobile');
+                
+                if (logoutButton) {
+                    logoutButton.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        localStorage.removeItem('currentUser');
+                        window.location.reload();
+                    });
+                }
+                
+                if (logoutButtonMobile) {
+                    logoutButtonMobile.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        localStorage.removeItem('currentUser');
+                        window.location.reload();
+                    });
+                }
+            } else {
+                // Usuário não logado
+                if (authSectionDesktop) authSectionDesktop.style.display = 'flex';
+                if (userSectionDesktop) userSectionDesktop.style.display = 'none';
+                if (authSectionMobile) authSectionMobile.style.display = 'block';
+                if (userSectionMobile) userSectionMobile.style.display = 'none';
+            }
+            
+            // Configurar menu móvel
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                // Inicialmente oculto
+                mobileMenu.style.display = 'none';
+                
+                mobileMenuButton.addEventListener('click', function() {
+                    if (mobileMenu.style.display === 'none') {
+                        mobileMenu.style.display = 'block';
+                    } else {
+                        mobileMenu.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

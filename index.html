@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press Play - Sua Plataforma de Jogos Digitais</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <span class="logo-text"><span class="blue-text">Press</span>Play</span>
+                    </a>
+                </div>
+                
+                <!-- Search Bar - Desktop -->
+                <div class="search-bar-desktop">
+                    <input type="text" placeholder="Pesquisar jogos, categorias, publishers...">
+                    <button class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <!-- Navigation - Desktop -->
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link active">Loja</a>
+                    <a href="perfil.html#biblioteca" class="nav-link">Biblioteca</a>
+                    <a href="#" class="nav-link">Comunidade</a>
+                    <div class="auth-buttons" id="auth-section-desktop">
+                        <a href="login.html" class="login-button">Login</a>
+                        <a href="cadastro.html" class="register-button">Cadastre-se</a>
+                    </div>
+                    <div class="user-dropdown" id="user-section-desktop" style="display: none;">
+                        <button class="user-button">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="header-username">Usuário</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="perfil.html"><i class="fas fa-user"></i> Meu Perfil</a>
+                            <a href="perfil.html#biblioteca"><i class="fas fa-gamepad"></i> Biblioteca</a>
+                            <a href="#"><i class="fas fa-cog"></i> Configurações</a>
+                            <a href="#" id="logout-button"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                        </div>
+                    </div>
+                    <a href="carrinho.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Search Bar - Mobile -->
+            <div class="search-bar-mobile">
+                <input type="text" placeholder="Pesquisar jogos...">
+                <button class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu">
+            <div class="container">
+                <a href="index.html" class="mobile-nav-link active">Loja</a>
+                <a href="perfil.html#biblioteca" class="mobile-nav-link">Biblioteca</a>
+                <a href="#" class="mobile-nav-link">Comunidade</a>
+                <div id="auth-section-mobile">
+                    <a href="login.html" class="mobile-nav-link">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="cadastro.html" class="mobile-nav-link">
+                        <i class="fas fa-user-plus"></i> Cadastre-se
+                    </a>
+                </div>
+                <div id="user-section-mobile" style="display: none;">
+                    <a href="perfil.html" class="mobile-nav-link">
+                        <i class="fas fa-user"></i> Meu Perfil
+                    </a>
+                    <a href="perfil.html#biblioteca" class="mobile-nav-link">
+                        <i class="fas fa-gamepad"></i> Biblioteca
+                    </a>
+                    <a href="#" class="mobile-nav-link">
+                        <i class="fas fa-cog"></i> Configurações
+                    </a>
+                    <a href="#" class="mobile-nav-link" id="logout-button-mobile">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </a>
+                </div>
+                <a href="carrinho.html" class="mobile-nav-link">
+                    <i class="fas fa-shopping-cart"></i> Carrinho
+                    <span class="cart-badge" id="cart-badge-mobile">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section / Game Carousel -->
+        <section class="hero-section">
+            <div class="carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                        <div class="carousel-content">
+                            <div class="carousel-text">
+                                <span class="game-tag">Lançamento</span>
+                                <h2>Cyberpunk 2077</h2>
+                                <p>Entre no mundo futurista de Night City e torne-se uma lenda urbana.</p>
+                                <div class="carousel-price">
+                                    <span class="discount">-20%</span>
+                                    <span class="old-price">R$299,90</span>
+                                    <span class="current-price">R$239,92</span>
+                                </div>
+                                <button class="buy-button">Comprar Agora</button>
+                            </div>
+                            <div class="carousel-image" style="background-image: url('https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg?t=1621944801');">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-content">
+                            <div class="carousel-text">
+                                <span class="game-tag">Em Promoção</span>
+                                <h2>Red Dead Redemption 2</h2>
+                                <p>Explore o vasto e imersivo faroeste americano em uma história épica.</p>
+                                <div class="carousel-price">
+                                    <span class="discount">-33%</span>
+                                    <span class="old-price">R$239,90</span>
+                                    <span class="current-price">R$160,73</span>
+                                </div>
+                                <button class="buy-button">Comprar Agora</button>
+                            </div>
+                            <div class="carousel-image" style="background-image: url('https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg?t=1618851907');">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-content">
+                            <div class="carousel-text">
+                                <span class="game-tag">Mais Vendido</span>
+                                <h2>The Witcher 3</h2>
+                                <p>Torne-se Geralt de Rívia, um caçador de monstros profissional.</p>
+                                <div class="carousel-price">
+                                    <span class="discount">-70%</span>
+                                    <span class="old-price">R$129,90</span>
+                                    <span class="current-price">R$38,97</span>
+                                </div>
+                                <button class="buy-button">Comprar Agora</button>
+                            </div>
+                            <div class="carousel-image" style="background-image: url('https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg?t=1621939214');">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-arrow prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-indicators">
+                        <span class="indicator active"></span>
+                        <span class="indicator"></span>
+                        <span class="indicator"></span>
+                    </div>
+                    <button class="carousel-arrow next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Special Offers -->
+        <section class="game-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Ofertas Especiais</h2>
+                    <a href="#" class="view-all">Ver Todas <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="game-grid">
+                    <div class="game-card">
+                        <div class="game-card-image">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg?t=1618851907" alt="Red Dead Redemption 2">
+                            <div class="discount-badge">-33%</div>
+                        </div>
+                        <div class="game-card-content">
+                            <h3>Red Dead Redemption 2</h3>
+                            <div class="game-categories">
+                                <span>Ação</span>
+                                <span>Aventura</span>
+                                <span>Mundo Aberto</span>
+                            </div>
+                            <div class="game-price">
+                                <span class="old-price">R$239,90</span>
+                                <span class="current-price">R$160,73</span>
+                            </div>
+                            <button class="add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card">
+                        <div class="game-card-image">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg?t=1621939214" alt="The Witcher 3: Wild Hunt">
+                            <div class="discount-badge">-70%</div>
+                        </div>
+                        <div class="game-card-content">
+                            <h3>The Witcher 3: Wild Hunt</h3>
+                            <div class="game-categories">
+                                <span>RPG</span>
+                                <span>Fantasia</span>
+                                <span>Mundo Aberto</span>
+                            </div>
+                            <div class="game-price">
+                                <span class="old-price">R$129,90</span>
+                                <span class="current-price">R$38,97</span>
+                            </div>
+                            <button class="add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card">
+                        <div class="game-card-image">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/546560/header.jpg?t=1622585025" alt="Half-Life: Alyx">
+                            <div class="discount-badge">-50%</div>
+                        </div>
+                        <div class="game-card-content">
+                            <h3>Half-Life: Alyx</h3>
+                            <div class="game-categories">
+                                <span>VR</span>
+                                <span>FPS</span>
+                                <span>Sci-Fi</span>
+                            </div>
+                            <div class="game-price">
+                                <span class="old-price">R$199,90</span>
+                                <span class="current-price">R$99,95</span>
+                            </div>
+                            <button class="add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card">
+                        <div class="game-card-image">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg?t=1622659352" alt="ELDEN RING">
+                            <div class="discount-badge">-20%</div>
+                        </div>
+                        <div class="game-card-content">
+                            <h3>ELDEN RING</h3>
+                            <div class="game-categories">
+                                <span>RPG</span>
+                                <span>Souls-like</span>
+                                <span>Fantasia</span>
+                            </div>
+                            <div class="game-price">
+                                <span class="old-price">R$249,90</span>
+                                <span class="current-price">R$199,92</span>
+                            </div>
+                            <button class="add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- New Releases -->
+        <section class="game-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Novos Lançamentos</h2>
+                    <a href="#" class="view-all">Ver Todos <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="game-grid">
+                    <div class="game-card">
+                        <div class="game-card-image">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg?t=1621944801" alt="Cyberpunk 2077">
+                            <div class="new-badge">Novo</div>
+                        </div>
+                        <div class="game-card-content">
+                            <h3>Cyberpunk 2077</h3>
+                            <div class="game-categories">
+                                <span>RPG</span>
+                                <span>Cyberpunk</span>
+                                <span>Mundo Aberto</span>
+                            </div>
+                            <div class="game-price">
+                                <span class="current-price">R$199,90</span>
+                            </div>
+                            <button class="add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card">
+                        <div class="game-card-image">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/990080/header.jpg?t=1618863534" alt="Hogwarts Legacy">
+                            <div class="new-badge">Novo</div>
+                        </div>
+                        <div class="game-card-content">
+                            <h3>Hogwarts Legacy</h3>
+                            <div class="game-categories">
+                                <span>Aventura</span>
+                                <span>Magia</span>
+                                <span>Mundo Aberto</span>
+                            </div>
+                            <div class="game-price">
+                                <span class="current-price">R$249,90</span>
+                            </div>
+                            <button class="add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card">
+                        <div class="game-card-image">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1222680/header.jpg?t=1622559932" alt="Need for Speed Heat">
+                            <div class="new-badge">Novo</div>
+                        </div>
+                        <div class="game-card-content">
+                            <h3>Need for Speed Heat</h3>
+                            <div class="game-categories">
+                                <span>Corrida</span>
+                                <span>Ação</span>
+                                <span>Multijogador</span>
+                            </div>
+                            <div class="game-price">
+                                <span class="current-price">R$179,90</span>
+                            </div>
+                            <button class="add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card">
+                        <div class="game-card-image">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg?t=1617979243" alt="Apex Legends">
+                            <div class="free-badge">Grátis</div>
+                        </div>
+                        <div class="game-card-content">
+                            <h3>Apex Legends</h3>
+                            <div class="game-categories">
+                                <span>FPS</span>
+                                <span>Battle Royale</span>
+                                <span>Multijogador</span>
+                            </div>
+                            <div class="game-price">
+                                <span class="free-price">Grátis</span>
+                            </div>
+                            <button class="download-button">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Categories -->
+        <section class="categories-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Navegue por Categorias</h2>
+                    <a href="#" class="view-all">Ver Todas <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <div class="category-image" style="background-image: url('https://cdn.cloudflare.steamstatic.com/store/promo/category/action.jpg');">
+                        </div>
+                        <div class="category-overlay"></div>
+                        <div class="category-content">
+                            <h3>Ação</h3>
+                            <p>2150 jogos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image" style="background-image: url('https://cdn.cloudflare.steamstatic.com/store/promo/category/rpg.jpg');">
+                        </div>
+                        <div class="category-overlay"></div>
+                        <div class="category-content">
+                            <h3>RPG</h3>
+                            <p>1423 jogos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image" style="background-image: url('https://cdn.cloudflare.steamstatic.com/store/promo/category/strategy.jpg');">
+                        </div>
+                        <div class="category-overlay"></div>
+                        <div class="category-content">
+                            <h3>Estratégia</h3>
+                            <p>980 jogos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image" style="background-image: url('https://cdn.cloudflare.steamstatic.com/store/promo/category/adventure.jpg');">
+                        </div>
+                        <div class="category-overlay"></div>
+                        <div class="category-content">
+                            <h3>Aventura</h3>
+                            <p>1746 jogos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image" style="background-image: url('https://cdn.cloudflare.steamstatic.com/store/promo/category/horror.jpg');">
+                        </div>
+                        <div class="category-overlay"></div>
+                        <div class="category-content">
+                            <h3>Terror</h3>
+                            <p>632 jogos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image" style="background-image: url('https://cdn.cloudflare.steamstatic.com/store/promo/category/sports.jpg');">
+                        </div>
+                        <div class="category-overlay"></div>
+                        <div class="category-content">
+                            <h3>Esportes</h3>
+                            <p>574 jogos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Recommended Games -->
+        <section class="game-section recommended-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Recomendados Para Você</h2>
+                    <a href="#" class="view-all">Ver Todos <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="recommended-games">
+                    <div class="game-card-large">
+                        <div class="game-card-large-image">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/990080/header.jpg?t=1618863534" alt="Hogwarts Legacy">
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 4.7
+                            </div>
+                        </div>
+                        <div class="game-card-large-content">
+                            <h3>Hogwarts Legacy</h3>
+                            <p>Embarque em uma jornada pelo mundo mágico de Harry Potter nesta aventura de mundo aberto. Explore Hogwarts, crie poções, aprenda feitiços e descubra segredos antigos.</p>
+                            <div class="game-categories">
+                                <span>Aventura</span>
+                                <span>Magia</span>
+                                <span>Mundo Aberto</span>
+                            </div>
+                            <div class="game-info">
+                                <div class="developer">
+                                    <span>Desenvolvedor:</span>
+                                    <p>Avalanche Software</p>
+                                </div>
+                                <div class="release-date">
+                                    <span>Data de lançamento:</span>
+                                    <p>10 Fev, 2023</p>
+                                </div>
+                            </div>
+                            <div class="game-price-actions">
+                                <div class="game-price">
+                                    <span class="current-price">R$249,90</span>
+                                </div>
+                                <div class="game-actions">
+                                    <button class="add-to-cart-large">Adicionar ao Carrinho</button>
+                                    <button class="add-to-wishlist">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card-large">
+                        <div class="game-card-large-image">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg?t=1621944801" alt="Cyberpunk 2077">
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 4.2
+                            </div>
+                        </div>
+                        <div class="game-card-large-content">
+                            <h3>Cyberpunk 2077</h3>
+                            <p>Cyberpunk 2077 é um RPG de ação e aventura de mundo aberto ambientado na megalópole de Night City, onde você joga como um mercenário cyberpunk envolvido em uma intensa luta pela sobrevivência.</p>
+                            <div class="game-categories">
+                                <span>RPG</span>
+                                <span>Cyberpunk</span>
+                                <span>Mundo Aberto</span>
+                            </div>
+                            <div class="game-info">
+                                <div class="developer">
+                                    <span>Desenvolvedor:</span>
+                                    <p>CD PROJEKT RED</p>
+                                </div>
+                                <div class="release-date">
+                                    <span>Data de lançamento:</span>
+                                    <p>10 Dez, 2020</p>
+                                </div>
+                            </div>
+                            <div class="game-price-actions">
+                                <div class="game-price">
+                                    <span class="old-price">R$199,90</span>
+                                    <span class="current-price">R$159,92</span>
+                                </div>
+                                <div class="game-actions">
+                                    <button class="add-to-cart-large">Adicionar ao Carrinho</button>
+                                    <button class="add-to-wishlist">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text"><span class="blue-text">Press</span>Play</span>
+                    <p>Sua plataforma de jogos digitais</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Links Rápidos</h3>
+                        <a href="index.html">Loja</a>
+                        <a href="#">Biblioteca</a>
+                        <a href="#">Comunidade</a>
+                        <a href="#">Suporte</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Categorias</h3>
+                        <a href="#">Ação</a>
+                        <a href="#">Aventura</a>
+                        <a href="#">RPG</a>
+                        <a href="#">Esportes</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Suporte</h3>
+                        <a href="#">FAQ</a>
+                        <a href="#">Contato</a>
+                        <a href="#">Política de Privacidade</a>
+                        <a href="#">Termos de Uso</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 PressPlay. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Game Details Modal -->
+    <div class="game-modal" id="game-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="close-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-game-details">
+                <div class="modal-game-header">
+                    <div class="modal-game-image">
+                        <img id="modal-game-img" src="" alt="Game Image">
+                    </div>
+                    <div class="modal-game-info">
+                        <h2 id="modal-game-title">Nome do Jogo</h2>
+                        <div class="modal-game-meta">
+                            <div class="modal-game-developer">
+                                <span>Desenvolvedor:</span>
+                                <p id="modal-game-developer">Nome do Desenvolvedor</p>
+                            </div>
+                            <div class="modal-game-publisher">
+                                <span>Publicadora:</span>
+                                <p id="modal-game-publisher">Nome da Publicadora</p>
+                            </div>
+                            <div class="modal-game-release">
+                                <span>Data de Lançamento:</span>
+                                <p id="modal-game-release">01/01/2023</p>
+                            </div>
+                        </div>
+                        <div class="modal-game-categories" id="modal-game-categories">
+                            <span>Categoria 1</span>
+                            <span>Categoria 2</span>
+                            <span>Categoria 3</span>
+                        </div>
+                        <div class="modal-game-rating">
+                            <div class="rating-stars" id="modal-rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span id="modal-game-rating">4.5</span>
+                            <span class="reviews-count" id="modal-reviews-count">(1250 avaliações)</span>
+                        </div>
+                        <div class="modal-game-price">
+                            <div class="price-container" id="modal-price-container">
+                                <span class="old-price" id="modal-old-price">R$199,90</span>
+                                <span class="discount" id="modal-discount">-20%</span>
+                                <span class="current-price" id="modal-current-price">R$159,92</span>
+                            </div>
+                            <div class="modal-actions">
+                                <button class="add-to-cart-modal">Adicionar ao Carrinho</button>
+                                <button class="add-to-wishlist-modal">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-game-description">
+                    <h3>Sobre o Jogo</h3>
+                    <p id="modal-game-description">Descrição detalhada do jogo...</p>
+                </div>
+                
+                <div class="modal-game-screenshots">
+                    <h3>Screenshots</h3>
+                    <div class="screenshots-grid" id="modal-screenshots">
+                        <div class="screenshot">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/ss_bac60bacbf5da8945103648c08d27d5e202444ca.jpg" alt="Screenshot 1">
+                        </div>
+                        <div class="screenshot">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/ss_ff2aa4d989a9f5068ebd65c418024211d0a1d7e0.jpg" alt="Screenshot 2">
+                        </div>
+                        <div class="screenshot">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/ss_c5d5341fd69478f62d55dd200e8ba38a2d9b3e0a.jpg" alt="Screenshot 3">
+                        </div>
+                        <div class="screenshot">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/ss_12a3e5d8d6654b8ab64d9392c56ee05df741122d.jpg" alt="Screenshot 4">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-game-requirements">
+                    <h3>Requisitos de Sistema</h3>
+                    <div class="requirements-container">
+                        <div class="minimum-requirements">
+                            <h4>Mínimos:</h4>
+                            <ul id="modal-minimum-requirements">
+                                <li><strong>SO:</strong> Windows 10 (64 bits)</li>
+                                <li><strong>Processador:</strong> Intel Core i5-3570K ou AMD FX-8310</li>
+                                <li><strong>Memória:</strong> 8 GB de RAM</li>
+                                <li><strong>Gráficos:</strong> NVIDIA GeForce GTX 780 ou AMD Radeon RX 470</li>
+                                <li><strong>Armazenamento:</strong> 70 GB de espaço disponível</li>
+                            </ul>
+                        </div>
+                        <div class="recommended-requirements">
+                            <h4>Recomendados:</h4>
+                            <ul id="modal-recommended-requirements">
+                                <li><strong>SO:</strong> Windows 10 (64 bits)</li>
+                                <li><strong>Processador:</strong> Intel Core i7-4790 ou AMD Ryzen 3 3200G</li>
+                                <li><strong>Memória:</strong> 12 GB de RAM</li>
+                                <li><strong>Gráficos:</strong> NVIDIA GeForce GTX 1060 ou AMD Radeon R9 Fury</li>
+                                <li><strong>Armazenamento:</strong> 70 GB SSD</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Verificar se o usuário está logado e atualizar o cabeçalho
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            const authSectionDesktop = document.getElementById('auth-section-desktop');
+            const userSectionDesktop = document.getElementById('user-section-desktop');
+            const authSectionMobile = document.getElementById('auth-section-mobile');
+            const userSectionMobile = document.getElementById('user-section-mobile');
+            const headerUsername = document.getElementById('header-username');
+            
+            if (currentUser) {
+                // Usuário logado
+                if (authSectionDesktop) authSectionDesktop.style.display = 'none';
+                if (userSectionDesktop) userSectionDesktop.style.display = 'flex';
+                if (authSectionMobile) authSectionMobile.style.display = 'none';
+                if (userSectionMobile) userSectionMobile.style.display = 'block';
+                
+                // Atualizar nome do usuário
+                if (headerUsername) {
+                    headerUsername.textContent = currentUser.name.split(' ')[0]; // Primeiro nome
+                }
+                
+                // Adicionar funcionalidade de logout
+                const logoutButton = document.getElementById('logout-button');
+                const logoutButtonMobile = document.getElementById('logout-button-mobile');
+                
+                if (logoutButton) {
+                    logoutButton.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        localStorage.removeItem('currentUser');
+                        window.location.reload();
+                    });
+                }
+                
+                if (logoutButtonMobile) {
+                    logoutButtonMobile.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        localStorage.removeItem('currentUser');
+                        window.location.reload();
+                    });
+                }
+            } else {
+                // Usuário não logado
+                if (authSectionDesktop) authSectionDesktop.style.display = 'flex';
+                if (userSectionDesktop) userSectionDesktop.style.display = 'none';
+                if (authSectionMobile) authSectionMobile.style.display = 'block';
+                if (userSectionMobile) userSectionMobile.style.display = 'none';
+            }
+            
+            // Configurar menu móvel
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                // Inicialmente oculto
+                mobileMenu.style.display = 'none';
+                
+                mobileMenuButton.addEventListener('click', function() {
+                    if (mobileMenu.style.display === 'none') {
+                        mobileMenu.style.display = 'block';
+                    } else {
+                        mobileMenu.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
