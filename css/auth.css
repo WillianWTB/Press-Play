@@ -1,0 +1,247 @@
+/* Estilos para as páginas de autenticação */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px - 250px); /* Altura da viewport menos header e footer */
+    padding: 40px 20px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://cdn.mos.cms.futurecdn.net/EyoWT2SmcaMKZqQN9JFXoP.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.auth-card {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 480px;
+    padding: 40px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header h2 {
+    color: #FFFFFF;
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.auth-header p {
+    color: #AAAAAA;
+    font-size: 16px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: #DDDDDD;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-group input {
+    padding: 12px 15px;
+    border-radius: 4px;
+    border: 1px solid #333333;
+    background-color: #252525;
+    color: #FFFFFF;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.password-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input input {
+    width: 100%;
+    padding-right: 45px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: #888888;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.toggle-password:hover {
+    color: #DDDDDD;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.remember-me, .terms-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #AAAAAA;
+    font-size: 14px;
+}
+
+.remember-me input, .terms-checkbox input {
+    width: 16px;
+    height: 16px;
+    accent-color: #3498db;
+}
+
+.forgot-password {
+    color: #3498db;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.auth-button {
+    padding: 14px;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.auth-button:hover {
+    background-color: #2980b9;
+}
+
+.auth-footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #AAAAAA;
+    font-size: 14px;
+}
+
+.auth-footer a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Indicador de força da senha */
+.password-strength {
+    margin-top: 8px;
+}
+
+.strength-meter {
+    height: 4px;
+    background-color: #333333;
+    border-radius: 2px;
+    margin-bottom: 5px;
+}
+
+.strength-meter-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s, background-color 0.3s;
+}
+
+.strength-meter-fill[data-strength="0"] {
+    width: 0%;
+}
+
+.strength-meter-fill[data-strength="1"] {
+    width: 25%;
+    background-color: #e74c3c;
+}
+
+.strength-meter-fill[data-strength="2"] {
+    width: 50%;
+    background-color: #e67e22;
+}
+
+.strength-meter-fill[data-strength="3"] {
+    width: 75%;
+    background-color: #f1c40f;
+}
+
+.strength-meter-fill[data-strength="4"] {
+    width: 100%;
+    background-color: #2ecc71;
+}
+
+.strength-text {
+    font-size: 12px;
+    color: #AAAAAA;
+}
+
+/* Mensagem de erro */
+.auth-error {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-bottom: 5px;
+    min-height: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .auth-card {
+        padding: 30px 20px;
+    }
+    
+    .auth-header h2 {
+        font-size: 24px;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 20px 15px;
+    }
+    
+    .auth-card {
+        padding: 25px 15px;
+    }
+}
