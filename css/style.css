@@ -1,5 +1,92 @@
 /* Estilos gerais para o site Press Play */
 
+/* Keyframes para animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(52, 152, 219, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
+}
+
 /* Reset e estilos base */
 * {
     margin: 0;
@@ -12,6 +99,7 @@ body {
     background-color: #121212;
     color: #FFFFFF;
     line-height: 1.6;
+    animation: fadeIn 0.8s ease-out;
 }
 
 .container {
@@ -19,6 +107,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    animation: slideInLeft 0.6s ease-out;
 }
 
 a {
@@ -42,6 +131,12 @@ img {
     position: sticky;
     top: 0;
     z-index: 100;
+    animation: slideInLeft 0.8s ease-out;
+    transition: all 0.3s ease;
+}
+
+.header:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .header-content {
@@ -49,6 +144,7 @@ img {
     align-items: center;
     justify-content: space-between;
     height: 80px;
+    animation: fadeIn 1s ease-out 0.2s both;
 }
 
 /* Logo */
@@ -57,10 +153,18 @@ img {
     font-weight: 700;
     font-size: 24px;
     color: #FFFFFF;
+    animation: bounceIn 1s ease-out 0.3s both;
+    transition: all 0.3s ease;
+}
+
+.logo-text:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
 }
 
 .blue-text {
     color: #3498db;
+    animation: glow 2s infinite;
 }
 
 /* Search Bar */
@@ -69,6 +173,7 @@ img {
     margin: 0 30px;
     position: relative;
     display: flex;
+    animation: slideInRight 0.8s ease-out 0.4s both;
 }
 
 .search-bar-desktop input {
@@ -80,6 +185,13 @@ img {
     background-color: #252525;
     color: #FFFFFF;
     font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.search-bar-desktop input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+    transform: scale(1.02);
 }
 
 .search-button {
@@ -116,6 +228,7 @@ img {
     display: flex;
     align-items: center;
     gap: 20px;
+    animation: slideInRight 0.8s ease-out 0.5s both;
 }
 
 .nav-link {
@@ -123,16 +236,36 @@ img {
     font-size: 16px;
     padding: 8px 12px;
     border-radius: 4px;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.nav-link:hover::before {
+    left: 100%;
 }
 
 .nav-link:hover, .nav-link.active {
     color: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .auth-buttons {
     display: flex;
     gap: 10px;
+    animation: bounceIn 1s ease-out 0.6s both;
 }
 
 .login-button, .register-button {
@@ -140,7 +273,27 @@ img {
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-button::before, .register-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+}
+
+.login-button:hover::before, .register-button:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .login-button {
@@ -151,6 +304,8 @@ img {
 
 .login-button:hover {
     background-color: rgba(52, 152, 219, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
 }
 
 .register-button {
@@ -161,6 +316,8 @@ img {
 
 .register-button:hover {
     background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
 }
 
 /* Estilo para o nome de usuário no header */
@@ -271,6 +428,7 @@ img {
 .hero-section {
     padding: 30px 0;
     background-color: #121212;
+    animation: fadeIn 1s ease-out 0.3s both;
 }
 
 .carousel {
@@ -280,11 +438,19 @@ img {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     margin: 0 20px;
     background-color: #1a1a1a;
+    animation: bounceIn 1.2s ease-out 0.5s both;
+    transition: all 0.3s ease;
+}
+
+.carousel:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .carousel-container {
     position: relative;
     height: 400px;
+    overflow: hidden;
 }
 
 .carousel-slide {
@@ -295,18 +461,58 @@ img {
     height: 100%;
     opacity: 0;
     transition: opacity 0.5s ease;
-    display: flex;
+    display: none;
 }
 
 .carousel-slide.active {
     opacity: 1;
     z-index: 1;
+    display: block;
 }
 
 .carousel-content {
     display: flex;
+    flex-direction: row;
     width: 100%;
     height: 100%;
+}
+
+.carousel-text {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+}
+
+.carousel-image {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .carousel-content {
+        flex-direction: column;
+    }
+    
+    .carousel-text {
+        order: 2;
+        padding: 20px;
+    }
+    
+    .carousel-image {
+        order: 1;
+        height: 250px;
+    }
 }
 
 .carousel-text {
@@ -333,12 +539,26 @@ img {
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 15px;
+    animation: slideInLeft 0.8s ease-out 0.7s both;
+    transition: all 0.3s ease;
+}
+
+.game-tag:hover {
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.4);
 }
 
 .carousel-text h2 {
     font-size: 36px;
     margin-bottom: 15px;
     font-family: 'Poppins', sans-serif;
+    animation: slideInLeft 0.8s ease-out 0.8s both;
+    transition: all 0.3s ease;
+}
+
+.carousel-text h2:hover {
+    color: #3498db;
+    text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
 }
 
 .carousel-text p {
@@ -346,6 +566,8 @@ img {
     margin-bottom: 20px;
     font-size: 16px;
     max-width: 400px;
+    animation: slideInLeft 0.8s ease-out 0.9s both;
+    transition: all 0.3s ease;
 }
 
 .carousel-price {
@@ -384,12 +606,39 @@ img {
     border-radius: 4px;
     font-size: 16px;
     font-weight: 600;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
     align-self: flex-start;
+    animation: bounceIn 1s ease-out 1.2s both;
+    position: relative;
+    overflow: hidden;
+}
+
+.buy-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+}
+
+.buy-button:hover::after {
+    width: 300px;
+    height: 300px;
 }
 
 .buy-button:hover {
     background-color: #2980b9;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.buy-button:active {
+    transform: translateY(-1px) scale(1.02);
 }
 
 .carousel-controls {
@@ -443,6 +692,7 @@ img {
 /* Game Sections */
 .game-section {
     padding: 40px 0;
+    animation: slideInLeft 0.8s ease-out;
 }
 
 .section-header {
@@ -450,6 +700,7 @@ img {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    animation: fadeIn 0.6s ease-out;
 }
 
 .section-header h2 {
@@ -476,19 +727,67 @@ img {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
+    animation: slideInRight 0.8s ease-out 0.2s both;
 }
 
 .game-card {
     background-color: #1a1a1a;
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: all 0.4s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.game-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.game-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.game-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.game-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.game-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.game-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.game-card:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.game-card:nth-child(8) {
+    animation-delay: 0.8s;
 }
 
 .game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px) rotateY(5deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.game-card:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(52, 152, 219, 0.1), rgba(52, 152, 219, 0.05));
+    z-index: 1;
+    pointer-events: none;
 }
 
 .game-card-image {
@@ -585,8 +884,25 @@ img {
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
     border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.add-to-cart::before, .download-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.add-to-cart:hover::before, .download-button:hover::before {
+    left: 100%;
 }
 
 .add-to-cart {
@@ -596,10 +912,13 @@ img {
 
 .add-to-cart:hover {
     background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
 }
 
 .add-to-cart.added {
     background-color: #27ae60;
+    animation: pulse 0.6s ease-out;
 }
 
 .download-button {
@@ -609,6 +928,8 @@ img {
 
 .download-button:hover {
     background-color: #8e44ad;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(155, 89, 182, 0.4);
 }
 
 /* Contador do carrinho */
@@ -831,6 +1152,7 @@ img {
     background-color: #1a1a1a;
     padding: 40px 0 20px;
     margin-top: 40px;
+    animation: slideInLeft 0.8s ease-out;
 }
 
 .footer-content {
@@ -838,6 +1160,7 @@ img {
     flex-wrap: wrap;
     gap: 40px;
     margin-bottom: 30px;
+    animation: fadeIn 1s ease-out 0.3s both;
 }
 
 .footer-logo {
@@ -1193,11 +1516,12 @@ img {
 
 @media (max-width: 768px) {
     .header-content {
-        height: 70px;
+        height: 60px;
+        padding: 0 15px;
     }
     
     .logo-text {
-        font-size: 20px;
+        font-size: 18px;
     }
     
     .search-bar-desktop {
@@ -1206,6 +1530,7 @@ img {
     
     .search-bar-mobile {
         display: flex;
+        padding: 10px 15px;
     }
     
     .nav-desktop .nav-link,
@@ -1215,6 +1540,20 @@ img {
     
     .mobile-menu-button {
         display: block;
+        padding: 8px;
+    }
+
+    .mobile-menu {
+        padding: 10px 0;
+    }
+
+    .mobile-nav-link {
+        padding: 12px 15px;
+        font-size: 15px;
+    }
+
+    .container {
+        padding: 0 10px;
     }
     
     .carousel-container {
@@ -1239,7 +1578,21 @@ img {
     }
     
     .carousel-image {
+        width: 100%;
         height: 200px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .carousel-content {
+        flex-direction: column-reverse;
+        height: auto;
+    }
+
+    .carousel-text {
+        width: 100%;
+        padding: 20px;
     }
     
     .footer-content {
