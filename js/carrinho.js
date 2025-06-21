@@ -4,11 +4,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Verificar se o usuário está logado
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     
-    // Carregar os itens do carrinho
-    loadCartItems();
+    // Debug - verificar localStorage
+    console.log('localStorage cartItems:', localStorage.getItem('cartItems'));
     
-    // Atualizar contador do carrinho
-    updateCartCount();
+    // Aguardar um pequeno delay para garantir que DOM está totalmente carregado
+    setTimeout(() => {
+        // Carregar os itens do carrinho
+        loadCartItems();
+        
+        // Atualizar contador do carrinho
+        updateCartCount();
+    }, 100);
     
     // Configurar o botão de checkout
     const checkoutButton = document.getElementById('checkout-button');
@@ -179,11 +185,17 @@ function loadCartItems() {
     // Obter itens do carrinho do localStorage
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     
+    console.log('Carregando itens do carrinho:', cartItems); // Debug
+    
     // Verificar se o carrinho está vazio
     if (cartItems.length === 0) {
         if (emptyCart) emptyCart.style.display = 'flex';
         if (summaryElement) summaryElement.style.opacity = '0.5';
         if (checkoutButton) checkoutButton.disabled = true;
+        // Limpar container para mostrar apenas mensagem vazia
+        if (cartItemsContainer) {
+            cartItemsContainer.innerHTML = '<div class="empty-cart" id="empty-cart" style="display: flex;"><i class="fas fa-shopping-cart"></i><h3>Seu carrinho está vazio</h3><p>Adicione itens à sua cesta para começar as compras.</p><a href="index.html" class="continue-shopping">Continuar Comprando</a></div>';
+        }
         return;
     }
     
@@ -192,23 +204,22 @@ function loadCartItems() {
     if (summaryElement) summaryElement.style.opacity = '1';
     if (checkoutButton) checkoutButton.disabled = false;
     
-    // Limpar qualquer conteúdo existente
+    // Limpar container e adicionar itens
     if (cartItemsContainer) {
-        // Manter o elemento de carrinho vazio
-        const emptyCartElement = document.getElementById('empty-cart');
         cartItemsContainer.innerHTML = '';
-        if (emptyCartElement) cartItemsContainer.appendChild(emptyCartElement);
         
         // Adicionar cada item ao container
         let subtotal = 0;
         let discount = 0;
         
-        cartItems.forEach(item => {
+        cartItems.forEach((item, index) => {
             const itemElement = createCartItemElement(item);
-            cartItemsContainer.insertBefore(itemElement, emptyCartElement);
+            // Adicionar animação com delay
+            itemElement.style.animationDelay = `${index * 0.1}s`;
+            cartItemsContainer.appendChild(itemElement);
             
             // Calcular subtotal e desconto
-            const originalPrice = item.price;
+            const originalPrice = item.price || 0;
             const finalPrice = item.discountPercentage ? calculateDiscountedPrice(item.price, item.discountPercentage) : item.price;
             
             subtotal += originalPrice;
@@ -226,22 +237,28 @@ function createCartItemElement(item) {
     itemElement.className = 'cart-item';
     itemElement.dataset.id = item.id;
     
-    const finalPrice = item.discountPercentage ? calculateDiscountedPrice(item.price, item.discountPercentage) : item.price;
+    // Garantir que temos valores válidos
+    const price = item.price || 0;
+    const discountPercentage = item.discountPercentage || 0;
+    const finalPrice = discountPercentage > 0 ? calculateDiscountedPrice(price, discountPercentage) : price;
+    const title = item.title || 'Jogo sem título';
+    const developer = item.developer || 'Desenvolvedor desconhecido';
+    const imageUrl = item.imageUrl || 'https://via.placeholder.com/150x100?text=No+Image';
     
     itemElement.innerHTML = `
         <div class="item-image">
-            <img src="${item.imageUrl}" alt="${item.title}">
+            <img src="${imageUrl}" alt="${title}" onerror="this.src='https://via.placeholder.com/150x100?text=No+Image'">
         </div>
         <div class="item-details">
-            <h3 class="item-title">${item.title}</h3>
-            <p class="item-developer">${item.developer}</p>
+            <h3 class="item-title">${title}</h3>
+            <p class="item-developer">${developer}</p>
         </div>
         <div class="item-price">
-            ${item.discountPercentage ? `<span class="item-old-price">${formatCurrency(item.price)}</span>` : ''}
+            ${discountPercentage > 0 ? `<span class="item-old-price">${formatCurrency(price)}</span>` : ''}
             <span class="item-current-price">${formatCurrency(finalPrice)}</span>
         </div>
         <div class="item-actions">
-            <button class="remove-item" data-id="${item.id}">
+            <button class="remove-item" data-id="${item.id}" title="Remover item">
                 <i class="fas fa-trash-alt"></i>
             </button>
         </div>
@@ -250,7 +267,9 @@ function createCartItemElement(item) {
     // Adicionar evento para remover o item
     const removeButton = itemElement.querySelector('.remove-item');
     if (removeButton) {
-        removeButton.addEventListener('click', function() {
+        removeButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             removeFromCart(item.id);
         });
     }
