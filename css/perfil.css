@@ -1,5 +1,85 @@
 /* Estilos para a página de perfil */
 
+@keyframes profileSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes avatarGlow {
+    0% {
+        box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(52, 152, 219, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(-100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes bounceIn {
+    0%, 20%, 50%, 80%, 100% {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
+    }
+    20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    40% {
+        transform: scale3d(.9, .9, .9);
+    }
+    60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+    }
+    80% {
+        transform: scale3d(.97, .97, .97);
+    }
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .perfil-container {
     display: flex;
     gap: 30px;
@@ -7,6 +87,7 @@
     max-width: 1200px;
     margin: 0 auto;
     min-height: calc(100vh - 80px - 250px); /* Altura da viewport menos header e footer */
+    animation: fadeIn 0.8s ease-out;
 }
 
 /* Sidebar */
@@ -17,6 +98,13 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: profileSlideUp 1s ease-out 0.2s both;
+    transition: all 0.3s ease;
+}
+
+.perfil-sidebar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .perfil-user {
@@ -32,12 +120,26 @@
     font-size: 60px;
     color: #3498db;
     margin-bottom: 15px;
+    animation: bounceIn 1s ease-out 0.5s both;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.perfil-avatar:hover {
+    transform: scale(1.1) rotate(5deg);
+    animation: avatarGlow 2s infinite;
 }
 
 .perfil-info h3 {
     font-size: 18px;
     margin-bottom: 5px;
     color: #FFFFFF;
+    transition: all 0.3s ease;
+}
+
+.perfil-info h3:hover {
+    color: #3498db;
+    text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
 }
 
 .perfil-info p {
@@ -95,6 +197,7 @@
     border-radius: 8px;
     padding: 30px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: slideInRight 0.8s ease-out 0.4s both;
 }
 
 .perfil-section {
@@ -121,6 +224,13 @@
     border-radius: 8px;
     margin-bottom: 30px;
     color: #FFFFFF;
+    animation: slideInUp 0.5s ease-out;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.welcome-banner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .welcome-banner h3 {
@@ -146,6 +256,12 @@
     display: flex;
     align-items: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .stat-card i {
@@ -182,6 +298,7 @@
     background-color: #252525;
     border-radius: 8px;
     padding: 20px;
+    animation: fadeIn 0.8s ease-out;
 }
 
 .recent-activity h3 {
@@ -229,6 +346,11 @@
     background-color: #252525;
     color: #FFFFFF;
     font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.library-search input:focus {
+    background-color: #333;
 }
 
 .library-search-button {
@@ -241,6 +363,11 @@
     border: none;
     color: #777;
     font-size: 16px;
+    transition: color 0.3s;
+}
+
+.library-search-button:hover {
+    color: #FFF;
 }
 
 .library-sort select {
@@ -251,6 +378,12 @@
     color: #FFFFFF;
     font-size: 14px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.library-sort select:hover,
+.library-sort select:focus {
+    background-color: #333;
 }
 
 .games-library-grid {
@@ -292,6 +425,7 @@
 
 .library-game-content {
     padding: 15px;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .library-game-content h3 {
@@ -344,6 +478,7 @@
     justify-content: center;
     padding: 60px 20px;
     text-align: center;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .game-library-empty i,
@@ -395,6 +530,7 @@
     flex-direction: column;
     gap: 20px;
     max-width: 600px;
+    animation: slideInUp 0.5s ease-out;
 }
 
 .save-button {
@@ -429,15 +565,26 @@
     font-size: 16px;
     gap: 8px;
     padding: 8px 12px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .user-button i.fa-user-circle {
     font-size: 18px;
+    transition: color 0.3s;
 }
 
 .user-button i.fa-chevron-down {
     font-size: 12px;
     margin-left: 5px;
+}
+
+.user-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.user-button:hover i.fa-user-circle {
+    color: #3498db;
 }
 
 .dropdown-menu {
@@ -450,6 +597,7 @@
     width: 180px;
     z-index: 100;
     display: none;
+    animation: slideInUp 0.3s ease-out;
 }
 
 .dropdown-menu a {
@@ -479,34 +627,39 @@
     .perfil-container {
         flex-direction: column;
     }
-    
+
     .perfil-sidebar {
         width: 100%;
     }
-    
+
     .perfil-user {
         flex-direction: row;
         text-align: left;
         gap: 15px;
     }
-    
+
     .perfil-avatar {
         margin-bottom: 0;
     }
-    
+
     .perfil-nav {
         display: flex;
         overflow-x: auto;
         padding: 10px;
     }
-    
+
     .perfil-nav-link {
         white-space: nowrap;
         border-radius: 20px;
         margin: 0 5px;
         padding: 8px 15px;
+        transition: background-color 0.3s, transform 0.3s;
     }
-    
+
+    .perfil-nav-link:hover {
+        transform: scale(1.05);
+    }
+
     .perfil-nav-link.active {
         border-left: none;
         background-color: #3498db;
@@ -516,18 +669,37 @@
 
 @media (max-width: 600px) {
     .perfil-container {
-        padding: 20px 15px;
+        padding: 15px 10px;
     }
-    
+
     .perfil-content {
-        padding: 20px 15px;
+        padding: 15px 10px;
     }
-    
+
     .stats-cards {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
-    
+
     .welcome-banner {
-        padding: 20px;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .perfil-nav-link {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .perfil-avatar i {
+        font-size: 40px;
+    }
+
+    .perfil-info h3 {
+        font-size: 18px;
     }
 }
